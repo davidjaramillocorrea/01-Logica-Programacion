@@ -1,0 +1,46 @@
+<meta charset="utf-8">
+
+<h1>PROGRAMA - ADIVINAR NUMEROS V.2</h1>
+<br>
+<br>
+<script>
+
+	//Generando funciones
+	function	saltolinea() { //Funcion para salto de linea
+		document.write("<br><br><br>");
+	}
+
+	function imprimir(frase) { //funcion para imprimir resultado y salto de linea
+		document.write(frase);
+		saltolinea();
+	}
+    var numeropensado = Math.round(Math.random()*10);
+
+    var intentos = 3;
+    var contador = 1;
+    //Contador para intentos de adivinar
+    while(contador <= intentos) {
+
+        var numerolanzado = parseInt(prompt("Ingrese un numero de 0-10."));
+
+        if(numerolanzado == numeropensado){
+            alert("Acerto el numero correcto.");
+        break; //Sentencia para cortar el ciclo
+    }
+
+    else {
+        alert("No acerto.");
+    }
+    contador++
+    }
+    //Resultados
+    if (numerolanzado == numeropensado) {
+        imprimir("Acerto el numero en el intento # " + contador + " El numero pensado " + numeropensado)
+    }
+    else {
+        imprimir("No acerto en ningun intento, el numero correcto era: " + numeropensado)
+    }
+    
+    imprimir("Fin programa.")
+    
+</script>

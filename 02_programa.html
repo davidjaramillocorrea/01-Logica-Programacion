@@ -1,0 +1,51 @@
+<meta charset="utf-8">
+
+<h1>HTML en JavaScript</h1>
+<br>
+
+<script>
+
+	//Generando funciones
+
+	function	saltolinea() { //Funcion para salto de linea
+		document.write("<br><br><br>");
+	}
+
+	function imprimir(frase){ //funcion para imprimir resultado y salto de linea
+		document.write(frase)
+		document.write("<br><br>");
+	}
+
+	var year = 2023
+	document.write("Espacio hombres…");
+	saltolinea();
+	document.write("Juan tiene: " + (year-1995) + " Años");
+	saltolinea();
+	document.write("Pedro tiene: " + (year-1999) + " Años");
+	saltolinea();
+	document.write("Carlos tiene: " + (year-2007) + " Años");
+	saltolinea();
+	promedioh = Math.round((28+24+16)/3)	
+	document.write("Promedio edad hombres es: " + promedioh + " Años");
+
+	//Calculo de edades + uso de variables + funciones
+
+	//Declaracion variables
+	var name1 = "Julieta ";
+	var name2 = "Carmen ";
+	var name3 = "Daniela ";
+
+	var edadjulieta = 20;
+	var edadcarmen = 47;
+	var edaddaniela = 13;
+
+	saltolinea();
+	imprimir("Espacio mujeres…");
+	imprimir(name1 + (year-2003) + " Años");
+	imprimir(name2 + (year-1976) + " Años");
+	imprimir(name3 + (year-2010) + " Años");
+	promediom = Math.round((edadjulieta+edadcarmen+edaddaniela)/3)	
+	imprimir("El promedio de edad entre " + name1 + " , " + name2 + " y "+ name3 + " es: " + promediom + " Años")
+
+
+</script>

@@ -1,0 +1,38 @@
+<meta charset="utf-8">
+
+<h1>Reto - ¿Alcohol o gasolina?</h1>
+
+<h3>¿Alcohol o gasolina?</h3>
+
+Reto de calculo de consumo.
+<br>
+<br>
+<script >
+	var tanque_gasolina = 40;
+	var recorrido_gasolina = 480;
+	var efi_gasolina = recorrido_gasolina/tanque_gasolina;
+	document.write("Si un carro usa " + tanque_gasolina + " litros de gasolina, para recorrer " + recorrido_gasolina + " kilometros.");
+	document.write("<br>");
+	document.write("<br>");
+	document.write("¿Cuantos kilometros recorre con un litro de gasolina?");
+	document.write("<br>");
+	document.write("<br>");
+	document.write("Con un litro de gasolina el carro recorre " + efi_gasolina + " Km/L");
+	document.write("<br>");
+	document.write("<br>");
+
+	var tanque_alcohol = 40;
+	var recorrido_alcohol = 300;
+	var efi_alcohol = recorrido_alcohol/tanque_alcohol;
+	document.write("Si un carro usa " + tanque_alcohol + " litros de alcohol, para recorrer " + recorrido_alcohol + " kilometros.");
+	document.write("<br>");
+	document.write("<br>");
+	document.write("¿Cuantos kilometros recorre con un litro de alcohol?");
+	document.write("<br>");
+	document.write("<br>");
+	document.write("Con un litro de alcohol el carro recorre " + efi_alcohol + " Km/L");
+	document.write("<br>");
+	document.write("<br>");
+	alert("El carro con gasolina es " + (efi_gasolina - efi_alcohol) + " kilometros, mas eficiente que alcohol.");
+</script>
+

@@ -1,0 +1,27 @@
+<meta charset="utf-8">
+
+<h1>PROGRAMA - Crear muchas estrellas</h1>
+<br>
+<br>
+<script>
+
+	//Generando funciones
+	function	saltolinea() { //Funcion para salto de linea
+		document.write("<br><br>");
+	}
+
+	function imprimir(frase) { //funcion para imprimir resultado y salto de linea
+		document.write(frase);
+		saltolinea();
+	}
+
+    for(var lineas = 1;lineas <= 3;lineas++){
+        for (var columnas = 1; columnas = 6; columnas++) {
+            document.write("*");
+        }
+        saltolinea();
+    }
+    
+    imprimir("Fin programa.")
+    
+</script>

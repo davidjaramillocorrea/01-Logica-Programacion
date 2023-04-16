@@ -1,0 +1,23 @@
+<meta charset="utf-8">
+
+<h1>Programa - Calcular media edad de una familia </h1>
+<br>
+<br>
+<script>
+	//Generando funciones
+	function	saltolinea() { //Funcion para salto de linea
+		document.write("<br><br>");
+	}
+
+	function imprimir(frase) { //funcion para imprimir resultado y salto de linea
+		document.write(frase);
+		saltolinea();
+	}
+    var contador = 1; //Inicio de variabl
+    while (contador <= 100) {
+        imprimir(contador)
+        contador = contador*(contador + 1) //Incremento de a dos
+    }
+    imprimir("Fin programa");
+
+</script>

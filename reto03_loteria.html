@@ -1,0 +1,39 @@
+<meta charset="utf-8">
+
+<h1>Programa adivinar numero</h1>
+<br>
+<br>
+
+<script>
+
+	//Generando funciones
+	function	saltolinea() { //Funcion para salto de linea
+		document.write("<br><br><br>");
+	}
+
+	function imprimir(frase) { //funcion para imprimir resultado y salto de linea
+		document.write(frase);
+		saltolinea();
+	}
+    function sortear(n){
+        return Math.round(Math.random()*n)
+    }
+
+    var numeropensado = sortear(parseInt(prompt("Ingrese un numero entero: ")))
+    var numerolanzado = parseInt(prompt("Ingrese un numero entre 0-10."))
+
+    if(numerolanzado == numeropensado){
+        imprimir("<big>" + "Acerto el numero." + "</big>");
+    }
+
+    else {
+        if (numerolanzado > numeropensado) {
+            imprimir("No acerto, el numero ingresado es mayor al numero por adivinar. " + numeropensado)
+        }
+        else {
+            imprimir("No acerto, el numero ingresado es menor al numero por adivinar. " + numeropensado)
+        }
+
+    }
+
+</script>

@@ -1,0 +1,29 @@
+<meta charset="utf-8">
+
+<h1>Programa años con mundial</h1>
+<br>
+<br>
+<script>
+
+	//Generando funciones
+	function	saltolinea() { //Funcion para salto de linea
+		document.write("<br><br><br>");
+	}
+
+	function imprimir(frase) { //funcion para imprimir resultado y salto de linea
+		document.write(frase);
+		saltolinea();
+	}
+    
+    var year_mundial = 1930
+    var limite = parseInt(prompt("Ingrese limite de calculo para años del mundial:"))
+
+    while (year_mundial <= limite){
+        imprimir("Hubo mundial de la FIFA en el año " + year_mundial)
+        year_mundial = year_mundial + 4
+    }
+
+    imprimir("fin programa")
+
+
+</script>

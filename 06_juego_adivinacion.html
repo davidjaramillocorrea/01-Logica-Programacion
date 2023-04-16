@@ -1,0 +1,29 @@
+<meta charset="utf-8">
+
+<h1>Programa adivinar numero</h1>
+<br>
+<br>
+
+<script>
+
+	//Generando funciones
+	function	saltolinea() { //Funcion para salto de linea
+		document.write("<br><br><br>");
+	}
+
+	function imprimir(frase) { //funcion para imprimir resultado y salto de linea
+		document.write(frase);
+		saltolinea();
+	}
+    var numeropensado = Math.round(Math.random()*10);
+    var numerolanzado = parseInt(prompt("Ingrese un numero entero de 0-10."))
+
+    if(numerolanzado == numeropensado){
+        imprimir("<big>" + "Acerto el numero." + "</big>");
+    }
+
+    else {
+        imprimir("No acerto, el numero correcto era " + "<big>"+numeropensado+"</big>");
+    }
+
+</script>

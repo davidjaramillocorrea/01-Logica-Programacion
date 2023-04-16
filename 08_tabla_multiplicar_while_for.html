@@ -1,0 +1,41 @@
+<meta charset="utf-8">
+
+<h1>Programa - Calcular tablas de multiplicar </h1>
+<br>
+<br>
+<script>
+
+	//Generando funciones
+	function	saltolinea() { //Funcion para salto de linea
+		document.write("<br><br>");
+	}
+
+	function imprimir(frase) { //funcion para imprimir resultado y salto de linea
+		document.write(frase);
+		saltolinea();
+	}
+    
+    function multiplicarNumero(numero_multiplicar,veces){
+        multiplicacion = numero_multiplicar * veces
+        return multiplicacion
+    }
+    var veces =  1;
+    var numero_multiplicar=parseInt(prompt("Ingrese el numero de la tabla que quiere multiplicar: "));
+    var veces_multiplicar=parseInt(prompt("Ingrese el numero hasta el que quiere saber la tabla: "));
+
+    imprimir("Repetir con WHILE.");
+    while (veces <= veces_multiplicar){
+          multiplicarNumero(numero_multiplicar,veces)
+        imprimir("El resultado de " + numero_multiplicar + " * " + veces + " = " + "<big>" + multiplicacion + "</big>")
+        document.write("<hr></hr>")
+        veces++
+    }
+
+    imprimir("Repetir con FOR.");
+    for (var veces =  1;veces <= veces_multiplicar;veces ++) {
+        multiplicarNumero(numero_multiplicar,veces)
+        imprimir("El resultado de " + numero_multiplicar + " * " + veces + " = " + "<big>" + multiplicacion + "</big>")
+    }
+    imprimir("Fin programa.")
+
+</script>
