@@ -1,0 +1,50 @@
+<meta charset="UTF-8">
+
+<h2>PROGRAMA - Cambio color circulo </h2>
+<br>
+El progama cambiara de color cada vez que se haga un click derecho.
+<br>
+
+<canvas width="600" height="400"></canvas>
+
+<script>
+    var pantalla = document.querySelector("canvas");
+    var pincel = pantalla.getContext("2d")
+
+    //Diseño de un rectangulo en pantalla
+    pincel.fillStyle = "grey";
+    pincel.fillRect(0,0,600,400);
+
+    function cambiarColor(){
+        posicionColorActual++;
+        if(posicionColorActual>=colores.length){
+            posicionColorActual = 0;
+            alert("Ahora tienes el color " + colores[posicionColorActual])
+        }
+        else{
+            alert("Ahora tienes el color " + colores[posicionColorActual])
+        }
+
+        return false;
+
+    }
+
+    function dibujarCirculo(evento) {
+        var x = evento.pageX - pantalla.offsetLeft;//la funcion offset toma los margenes que tienen la pantalla total
+        var y = evento.pageY - pantalla.offsetTop;
+
+        //Diseño del circulo
+        pincel.fillStyle = colores[posicionColorActual]
+        pincel.beginPath();
+        pincel.arc(x,y,20,0,(2*3.1416)); //El parametro x,y se toma del click y se inyecta en la funcion del cirulo para poder graficarlo
+        pincel.fill();
+        console.log(x + " , " + y) //Leer el log del click
+    }
+
+    var posicionColorActual = 0; //Ubicar la primera posicion del array de colores.
+    var colores =["blue","red","green","aqua","orange"];
+
+    pantalla.oncontextmenu = cambiarColor;
+    pantalla.onclick = dibujarCirculo;
+
+</script>

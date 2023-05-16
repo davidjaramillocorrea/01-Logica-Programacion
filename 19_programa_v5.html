@@ -1,0 +1,80 @@
+<meta charset="UTF-8">
+
+<h2>PROGRAMA - Juego tiro en el blanco.</h2>
+<br>
+El progama genera dianas en movimiento con alerta de ok cuando se hace click en el rango del circulo pequeño.
+<br>
+
+<input/> 
+<button>Que tan rapido eres </button>
+<br>
+<canvas width="600" height="400"></canvas> <!--creacion del tablero de trabajo-->
+<script>
+    //Dibujar area de tranajo.
+    var pantalla = document.querySelector("canvas");
+    var pincel = pantalla.getContext("2d")
+
+
+    //var input = document.querySelector("input"); //Capturar ingreso HTML de la etiqueta input.
+    //input.focus();
+
+    //Diseño de un rectangulo en pantalla.
+    pincel.fillStyle = "grey";
+    pincel.fillRect(0,0,600,400);
+
+    //var x = 0; //Se inicia en cero para partir de la posicio cero
+    
+    var radio = 10;
+
+    var xRandom;
+    var yRandom;
+
+    function disenoCirculo(x,y,radio,color) {
+        //Diseño del circulo
+        pincel.fillStyle = color;
+        pincel.beginPath();
+        pincel.arc(x,y,radio,0,2*Math.PI); 
+        pincel.fill();
+        
+    }
+
+    function limpiarPantalla(){
+        pincel.clearRect(0,0,600,400) //clearRec limpia la pantalla, en este caso se le ponen los mismos parametros de la pantalla canvas
+    }
+
+    function disenoObjetivo(x,y){
+        disenoCirculo(x,y,radio + 20,"red");
+        disenoCirculo(x,y,radio + 10,"white");
+        disenoCirculo(x,y,radio,"red");
+    }
+
+    function cambiarPosicion(maximo){
+        return  Math.floor(Math.random()*maximo);  //Creacion de numero aleatorios.
+    }
+
+    function actualizasrPantalla(){
+        limpiarPantalla();
+        xRandom = cambiarPosicion(600); //Se creo un numero de rango maximo 600 y se lleva a la variable x
+        yRandom = cambiarPosicion(400); //Se creo un numero de rango maximo 400 y se lleva a la variable y
+        disenoObjetivo(xRandom,yRandom);
+    }
+
+    function disparar(evento){
+        var x = evento.pageX - pantalla.offsetLeft; //Capturar la posicion del click restando los margenes
+        var y = evento.pageY - pantalla.offsetTop;
+
+        //En el condicional tendremos en cuenta la zona del circulo centrar para emitir la alerta
+        if ((x < xRandom + radio) &&
+            (x > xRandom - radio) &&
+            (y < yRandom + radio) && 
+            (y > yRandom - radio)){
+            alert("Acerto el tiro.")
+        }
+    }
+
+    //setInterval(actualizasrPantalla,click * 10) //Movimiento de la diana.
+    setInterval(actualizasrPantalla,1000) //Movimiento de la diana.
+
+    pantalla.onclick = disparar; //llamado a la funcion luego del click.
+
+</script>

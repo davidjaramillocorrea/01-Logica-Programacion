@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Paint</title>
+</head>
+<body>
+    <h1>Paint</h1>
+    <canvas class="lienzo" width="600px" height="400px"></canvas>
+    <br>
+    <canvas class="color" width="120px" height="40px"></canvas>
+    <h3>Rojo</h3>
+
+    <button class="clear">Limpiar</button>
+
+    <script>
+        let button = document.querySelector(".clear");
+        let select = document.querySelector("h3");
+        let canvas = document.querySelector(".lienzo");
+        let color = document.querySelector(".color");
+        let ctx = canvas.getContext("2d");
+        let ctxC = color.getContext("2d");
+
+        let colors = ["#E0115F", "#93C572", "#40B5AD"];
+        let colorsS = 0;
+        let line = false;
+
+        clear();
+
+        palette(0,0,40,40,colors[0]);
+        palette(40,0,40,40,colors[1]);
+        palette(80,0,40,40,colors[2]);
+        area(colors[colorsS]);
+
+        canvas.addEventListener("mousemove", draw);
+        canvas.addEventListener("mousedown", down);
+        canvas.addEventListener("mouseup", up);
+        color.addEventListener("click", change);
+        button.addEventListener("click", clear);
+
+        //La función area es innecesaria pero tiene la tarea de practicar la restricción de área dentro de un canvas.  Muestra el color que se seleccionó en la paleta pero en el lienzo.
+
+        function area(){
+            ctx.fillStyle = colors[colorsS];// 
+            ctx.fillRect(0,0,40,40);
+        }
+
+        function palette(x,y,width,height,color){        //Función para un canvas que contenga los colores.
+            ctxC.fillStyle = color;
+            ctxC.fillRect(x,y,width,height);
+        }
+
+        function draw(event){
+            if(line){
+                let x = event.pageX - canvas.offsetLeft;    //función que pinta dependiendo del mouse.
+                let y = event.pageY - canvas.offsetTop;
+
+                if (x > 40 || y > 40){                    //Condición de restricción para la función área.
+                    ctx.fillStyle = colors[colorsS];
+                    ctx.beginPath();
+                    ctx.arc(x, y, 4, 0, 2*3.14);
+                    ctx.fill();
+                }
+            }
+        }
+
+        function change(event){                            //función de cambio de color con canvas secundario.
+            let x = event.pageX - color.offsetLeft;
+            let y = event.pageY - color.offsetTop;
+
+            if (x < 40){
+                colorsS = 0;
+                select.textContent = "Rojo";
+                area();
+            }
+            if (x > 40 && x < 80){
+                colorsS = 1;
+                select.textContent = "Verde";
+                area();
+            }
+            if (x > 80 && x < 120){
+                colorsS = 2;
+                select.textContent = "Azul";
+                area();
+            }
+        }
+
+        function down(){            //función para dibujar mientras se presiona el botón.
+            line = true;
+        }
+
+        function up(){                //función para dejar de dibujar mientras el botón no se presiona.
+            line = false;
+        }
+
+        function clear(){                //función para reestablecer lienzo.
+            ctx.clearRect(0,0,600,400)
+            ctx.fillStyle = "lightgrey";
+            ctx.fillRect(0,0,600,400);
+            area();
+        }
+
+    </script>
+</body>
+</html>

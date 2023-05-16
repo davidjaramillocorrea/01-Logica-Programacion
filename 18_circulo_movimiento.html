@@ -1,0 +1,50 @@
+<meta charset="UTF-8">
+
+<h2>PROGRAMA - Ciculos en movimiento</h2>
+<br>
+El progama genera un movimiento de los circulos.
+<br>
+
+<canvas width="600" height="400"></canvas>
+
+<script>
+    var pantalla = document.querySelector("canvas");
+    var pincel = pantalla.getContext("2d")
+
+    //Diseño de un rectangulo en pantalla
+    pincel.fillStyle = "grey";
+    pincel.fillRect(0,0,600,400);
+
+
+    function disenoCirculo(x,y,radio) {
+        //Diseño del circulo
+        pincel.fillStyle = "red"
+        pincel.beginPath();
+        pincel.arc(x,y,radio,0,2*Math.PI); 
+        pincel.fill();
+    }
+
+    function limpiarPantalla(){
+        pincel.clearRect(0,0,600,400) //clearRec limpia la pantalla, en este caso se le ponen los mismos parametros de la pantalla canvas
+    }
+   
+    function actualizasrPantalla(){
+        limpiarPantalla();
+        disenoCirculo(x,20,10)
+        x = x + sentido //Aca es donde se carga la secuencia para ver si el movimiendo es der>izq o izq>der
+
+        //En esta parte el sentido se analizara y segun el caso se hara suma positiva o negativa al cargar un valor a la variable "sentido"
+        if(x > 600){
+            sentido= -1;
+        }else if(x<0){
+            sentido = 1;
+        }
+
+    }
+    
+    var x = 0; //Se inicia en cero para partir de la posicio cero
+    var sentido = 1;
+    setInterval(actualizasrPantalla,10) //setInterval se usa para mostrar en la pantalla algo cada xx tiempo
+  
+
+</script>

@@ -1,0 +1,107 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+    var pantalla = document.querySelector('canvas');
+    var pincel = pantalla.getContext('2d');
+
+    //Diseño espacio de dibujo
+    pincel.fillStyle = 'grey';
+    pincel.fillRect(0, 0, 600, 400);
+
+    //Creacion de cuadrados
+    function dibujarCuadrado(x,y,tamano,color){
+        pincel.fillStyle = color;
+        pincel.fillRect(x,y,tamano,tamano);
+        pincel.strokeStyle="black";
+        pincel.strokeRect(x,y,tamano,tamano)
+        pincel.fill();
+    }
+
+    //Paleta menu de colores azul, rojo, verde 
+    function dibujarPaleta(){ 
+        dibujarCuadrado(xBlue,yCuadrados,tamanoCuadrado,"blue");
+        dibujarCuadrado(xRed,yCuadrados,tamanoCuadrado,"red");
+        dibujarCuadrado(xGreen,yCuadrados,tamanoCuadrado,"green");
+    }
+
+    //Diseño de circulos que va a dibujar
+    function dibujarCirculo(x,y) {
+        if(puedoDibujar) { //En esta linea se inyecta true/false segun evento del mouse
+            pincel.fillStyle = colorActual;
+            pincel.beginPath();
+            pincel.arc(x, y, 5, 0, 2 * Math.PI);
+            pincel.fill();
+        }
+    }
+
+    function limitarAreaDibujo(xCoordenada,yCoordenada){
+    //Demarcacion del area de la paleta para no dibujar sobre la misma
+    if((xCoordenada >= 0 && xCoordenada < ((3 * tamanoCuadrado) + 5)) && 
+        (yCoordenada >= 0 && yCoordenada < (tamanoCuadrado + 5))){
+            return false;
+
+    } else{
+        return true;
+    }
+    }
+
+    function movimientoMouse(evento){
+        var x = evento.pageX - pantalla.offsetLeft;
+        var y = evento.pageY - pantalla.offsetTop;
+
+        if(limitarAreaDibujo(x,y)){
+            dibujarCirculo(x,y);
+        }
+    }
+
+    function seleccionarColor(evento){
+        //Verificar ubicacion del mouse
+        var x = evento.pageX - pantalla.offsetLeft;
+        var y = evento.pageY - pantalla.offsetTop;
+
+        //logica para seleccionar los colores segun el area del click
+        if(y > yCuadrados && y < (yCuadrados+tamanoCuadrado)){
+
+            if(x > xRed && x < (xRed + tamanoCuadrado)){
+                colorActual = "red"
+                console.log(colorActual);
+            
+            }else if(x > xGreen && x < (xGreen + tamanoCuadrado)){
+                colorActual = "green"
+                console.log(colorActual);
+
+            }else if (x > xBlue && x < (xBlue + tamanoCuadrado)){
+                colorActual = "blue"
+                console.log(colorActual);
+            }
+        }
+    }
+
+    //Diseño de las funciones para on/off de pincel
+    function habilitarDibujar() {
+        puedoDibujar = true;
+    }
+
+    function deshabilitarDibujar() {
+        puedoDibujar = false;
+    }
+    var puedoDibujar = false; //Variable para accionar la logica de click on/off
+
+    //Definicion de las variables para diseño de cuadrados.
+    var xRed = 0;
+    var xGreen = 50;
+    var xBlue = 100;
+    var yCuadrados = 0;
+    var tamanoCuadrado = 50;
+    //
+    var colorActual = "blue"; //Precargar valor
+
+    //Capturar los eventos del mouse
+    pantalla.onmousemove = movimientoMouse;
+    pantalla.onmousedown = habilitarDibujar;
+    pantalla.onmouseup = deshabilitarDibujar;
+    pantalla.onclick = seleccionarColor;
+
+    dibujarPaleta();
+
+</script>

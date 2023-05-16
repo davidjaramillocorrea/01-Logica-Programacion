@@ -1,0 +1,38 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+    var pantalla = document.querySelector("canvas");
+    var pincel = pantalla.getContext("2d")
+
+    //Diseño de un rectangulo en pantalla
+    pincel.fillStyle = "grey";
+    pincel.fillRect(0,0,600,400);
+
+    //Funcion para mostrar la posicion del mouse
+    function exhibirAlerta(evento) {
+        var x = evento.pageX - pantalla.offsetLeft;//la funcion offset toma los margenes que tienen la pantalla total
+        var y = evento.pageY - pantalla.offsetTop;
+        console.log(evento); //Log que se muestra en la consola para ver los datos del click
+        alert(x + " , " + y);
+
+    }
+
+    function dibujarCirculo(evento) {
+        var x = evento.pageX - pantalla.offsetLeft;//la funcion offset toma los margenes que tienen la pantalla total
+        var y = evento.pageY - pantalla.offsetTop;
+
+        //Diseño del circulo
+        pincel.fillStyle = "red"
+        pincel.beginPath();
+        pincel.arc(x,y,20,0,(2*3.1416)); //El parametro x,y se toma del click y se inyecta en la funcion del cirulo para poder graficarlo
+        pincel.fill();
+
+        console.log(x + " , " + y) //Leer el log del click
+
+
+    }
+
+    //pantalla.onclick = exhibirAlerta; //Accion que dispara la funcion al hacer click dentro del rectangulo
+    pantalla.onclick = dibujarCirculo;
+
+</script>
